@@ -29,7 +29,6 @@ export function Lobby(p: GameProp) {
             <PlayerList players={game.players} hostId={game.hostId} />{' '}
             <StartRoomButton hostId={game.hostId} roomId={game.id} />
             <Settings game={game} />
-            <SpectatorToggle />
         </div>
     );
 }

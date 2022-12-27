@@ -17,12 +17,10 @@ export type Game = {
     hostId: string;
     players: Players;
     phase: GamePhase;
-    size: number;
-    round: number;
-    maxRounds: number;
-    timelines: number;
-    timelineTime: number;
-    timer: number | null;
+    bombsPerPlayer: number;
+    boxCount: number;
+    //boxCount === amount of boxes
+    livesPerBox: number;
 };
 export type Room = Game;
 

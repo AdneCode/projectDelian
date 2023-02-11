@@ -54,7 +54,12 @@ export const Settings = (p: GameProp) => {
                     name="age"
                     min="1"
                     max="1000"
-                    onChange={}
+                    onChange={(e) =>
+                        setSettings({
+                            ...settings,
+                            bombsPerPlayer: +e.target.value,
+                        })
+                    }
                     value={settings.bombsPerPlayer}
                 />
             </div>

@@ -1,7 +1,7 @@
 import React from 'react';
-import { PlayersProp, Player as PlayerType } from '../../../../types/types';
+import { Player as PlayerType } from '../../../../types/types';
 import { Player } from './Player';
-export function PlayerList(p: PlayersProp) {
+export function PlayerList(p: { players: PlayerType[]; hostId: string }) {
     const { players, hostId } = p;
     return (
         <>

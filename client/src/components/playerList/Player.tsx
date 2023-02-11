@@ -1,8 +1,8 @@
 import { useContext } from 'react';
-import { PlayerProp } from '../../../../types/types';
+import { Player as PlayerType } from '../../../../types/types';
 import { SocketContext } from '../../socket/socket';
 
-export function Player(p: PlayerProp) {
+export function Player(p: { player: PlayerType }) {
     const socket = useContext(SocketContext);
     const { player } = p;
     return (

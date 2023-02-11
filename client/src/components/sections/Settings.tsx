@@ -1,3 +1,4 @@
+import { globalSettings } from '../../../../globalUtility/settings';
 import { useState, useContext, useEffect } from 'react';
 import {
     GameProp,
@@ -45,15 +46,16 @@ export const Settings = (p: GameProp) => {
         <div className="settingsWindow" id="settingsWindowId">
             <div className="settingsWindowField">
                 <label className="settingsText">
-                    Bombs per player (1-1000)
+                    Bombs per player ({globalSettings.minBombsPerPlayer}-
+                    {globalSettings.maxBombsPerPlayer})
                 </label>
                 <input
                     type="number"
                     className="inputBarSettings"
                     id="bombCountInputId"
                     name="age"
-                    min="1"
-                    max="1000"
+                    min={globalSettings.minBombsPerPlayer}
+                    max={globalSettings.maxBombsPerPlayer}
                     onChange={(e) =>
                         setSettings({
                             ...settings,
@@ -64,14 +66,17 @@ export const Settings = (p: GameProp) => {
                 />
             </div>
             <div className="settingsWindowField">
-                <label className="settingsText">Amount of boxes (2-9)</label>
+                <label className="settingsText">
+                    Amount of boxes ({globalSettings.minBoxCount}-
+                    {globalSettings.maxBoxCount})
+                </label>
                 <input
                     type="number"
                     className="inputBarSettings"
                     id="boxCountInputId"
                     name="age"
-                    min="1"
-                    max="25"
+                    min={globalSettings.minBoxCount}
+                    max={globalSettings.maxBoxCount}
                     onChange={(e) =>
                         setSettings({
                             ...settings,
@@ -82,14 +87,17 @@ export const Settings = (p: GameProp) => {
                 />
             </div>
             <div className="settingsWindowField">
-                <label className="settingsText">Lives per box(1-1000)</label>
+                <label className="settingsText">
+                    Lives per box({globalSettings.minBoxLives}-
+                    {globalSettings.maxBoxLives})
+                </label>
                 <input
                     type="number"
                     className="inputBarSettings"
                     id="boxLivesInputId"
                     name="age"
-                    min="1"
-                    max="1000"
+                    min={globalSettings.minBoxLives}
+                    max={globalSettings.maxBoxLives}
                     onChange={(e) =>
                         setSettings({
                             ...settings,

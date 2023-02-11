@@ -1,7 +1,7 @@
-import { GameProp } from '../../../../types/types';
+import { GameProp } from '../../../../globalUtility/types';
 import { PlayerList, StartRoomButton } from '..';
 import { useEffect, useContext } from 'react';
-import { Data } from '../../../../types/types';
+import { Data } from '../../../../globalUtility/types';
 import { gameReducer } from '../../store';
 import { useAppDispatch } from '../../hooks/hooks';
 import { SocketContext } from '../../socket/socket';

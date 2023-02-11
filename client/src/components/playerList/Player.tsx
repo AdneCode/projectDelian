@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Player as PlayerType } from '../../../../types/types';
+import { Player as PlayerType } from '../../../../globalUtility/types';
 import { SocketContext } from '../../socket/socket';
 
 export function Player(p: { player: PlayerType }) {

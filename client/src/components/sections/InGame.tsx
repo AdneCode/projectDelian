@@ -1,5 +1,5 @@
 import { useEffect, useContext } from 'react';
-import { Data, GameProp } from '../../../../types/types';
+import { Data, GameProp } from '../../../../globalUtility/types';
 import { SocketContext } from '../../socket/socket';
 import { useAppDispatch } from '../../hooks/hooks';
 import { gameReducer } from '../../store';

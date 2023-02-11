@@ -1,4 +1,4 @@
-import { GameProp } from '../../../../types/types';
+import { GameProp } from '../../../../globalUtility/types';
 import { Lobby, InGame } from '.';
 
 export function Game(p: GameProp) {

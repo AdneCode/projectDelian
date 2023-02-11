@@ -1,4 +1,4 @@
-import { Player, Room } from '../../types/types';
+import { Player, Room } from '../../globalUtility/types';
 
 //Takes the room and the socketId of the leaver, returns a new hostId
 export const getNewHost = (room: Room, socketId: string): string => {

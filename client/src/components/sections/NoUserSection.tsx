@@ -2,7 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { useAppDispatch } from '../../hooks/hooks';
 import { SocketContext } from '../../socket/socket';
 import { CreateRoomButton } from '../buttons';
-import { Data } from '../../../../types/types';
+import { Data } from '../../../../globalUtility/types';
 import { gameReducer } from '../../store';
 
 export function NoUserSection() {

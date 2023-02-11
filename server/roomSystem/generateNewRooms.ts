@@ -1,4 +1,4 @@
-import { Room, Rooms } from '../../types/types';
+import { Room, Rooms } from '../../globalUtility/types';
 export const generateNewRooms = (rooms: Rooms, newRoom: Room) => {
     return rooms.map((i: Room) => {
         if (i.id === newRoom.id) return newRoom;

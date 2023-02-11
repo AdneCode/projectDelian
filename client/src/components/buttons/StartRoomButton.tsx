@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 import { SocketContext } from '../../socket/socket';
-import { Data } from '../../../../types/types';
+import { Data } from '../../../../globalUtility/types';
 
 const StartRoomButton = (p: { roomId: string; hostId: string }) => {
     const { roomId, hostId } = p;

@@ -1,4 +1,4 @@
-import { Player, Room, Rooms } from '../../types/types';
+import { Player, Room, Rooms } from '../../globalUtility/types';
 export const joinRoom = (
     rooms: Rooms,
     roomId: string,

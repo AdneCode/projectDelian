@@ -3,7 +3,7 @@ import {
     GameProp,
     Data,
     Settings as SettingsType,
-} from '../../../../types/types';
+} from '../../../../globalUtility/types';
 import { SocketContext } from '../../socket/socket';
 
 export const Settings = (p: GameProp) => {
@@ -72,6 +72,12 @@ export const Settings = (p: GameProp) => {
                     name="age"
                     min="1"
                     max="25"
+                    onChange={(e) =>
+                        setSettings({
+                            ...settings,
+                            boxCount: +e.target.value,
+                        })
+                    }
                     value={settings.boxCount}
                 />
             </div>
@@ -84,6 +90,12 @@ export const Settings = (p: GameProp) => {
                     name="age"
                     min="1"
                     max="1000"
+                    onChange={(e) =>
+                        setSettings({
+                            ...settings,
+                            livesPerBox: +e.target.value,
+                        })
+                    }
                     value={settings.livesPerBox}
                 />
             </div>

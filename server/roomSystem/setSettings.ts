@@ -1,4 +1,4 @@
-import { Rooms, Game, Settings, Room } from '../../types/types';
+import { Rooms, Game, Settings, Room } from '../../globalUtility/types';
 export const setSettings = (
     rooms: Rooms,
     socketId: string,

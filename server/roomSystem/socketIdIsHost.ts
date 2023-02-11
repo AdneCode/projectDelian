@@ -1,4 +1,4 @@
-import { Room, Rooms } from '../../types/types';
+import { Room, Rooms } from '../../globalUtility/types';
 export const socketIdIsHost = (
     rooms: Rooms,
     roomId: string,

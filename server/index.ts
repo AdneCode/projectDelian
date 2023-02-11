@@ -1,4 +1,4 @@
-import { Rooms, Data, Room } from '../types/types';
+import { Rooms, Data, Room } from '../globalUtility/types';
 
 const corsMiddleWare = require('cors');
 const { Server } = require('socket.io');

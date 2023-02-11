@@ -1,4 +1,4 @@
-import { Rooms, Room, Player, Game } from '../../types/types';
+import { Rooms, Room, Player, Game } from '../../globalUtility/types';
 import { roomHasSocketId } from './roomHasSocketId';
 import { socketIdIsHost } from './socketIdIsHost';
 import { getNewHost } from './getNewHost';

@@ -25,6 +25,7 @@ import {
     generateNewRooms,
     removePlayerFromRoom,
     toggleSpectator,
+    setSettings,
 } from './roomSystem';
 
 //Socket setup
@@ -108,6 +109,25 @@ io.on('connect', (socket: any) => {
             );
             const sendData = { room: findRoomById(rooms, foundRoom.id) };
             emitToRoom(rooms, foundRoom.id, sendData, io);
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
+    //Handles an host changing settings
+    socket.on('setSettings', (data: Data) => {
+        try {
+            const { roomId, settings } = data;
+            console.log(`Host ${socket.id} changed settings ${roomId}`);
+            const { newRooms, newRoom } = setSettings(
+                rooms,
+                socket.id,
+                settings,
+                roomId,
+            );
+            rooms = newRooms;
+            const sendData = { room: newRoom };
+            emitToRoom(rooms, newRoom.id, sendData, io);
         } catch (error) {
             console.log(error);
         }

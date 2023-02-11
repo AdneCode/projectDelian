@@ -23,6 +23,13 @@ export type Game = {
     //boxCount === amount of boxes
     livesPerBox: number;
 };
+
+export type Settings = {
+    bombsPerPlayer: number;
+    boxCount: number;
+    livesPerBox: number;
+};
+
 export type Room = Game;
 
 type bombSlot = {
@@ -56,7 +63,7 @@ export type Data = {
     playerName?: string;
     roomId?: string;
     room?: Game;
-    settings?: Object;
+    settings?: Settings;
 };
 
 ////End Client & server shared types////

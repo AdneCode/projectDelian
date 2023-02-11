@@ -4,7 +4,6 @@ import { SocketContext } from '../../socket/socket';
 import { CreateRoomButton } from '../buttons';
 import { Data } from '../../../../types/types';
 import { gameReducer } from '../../store';
-import { Socket } from 'socket.io-client';
 
 export function NoUserSection() {
     const dispatch = useAppDispatch();

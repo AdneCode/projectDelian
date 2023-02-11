@@ -1,55 +1,48 @@
 import { useState, useContext, useEffect } from 'react';
-import { GameProp, Data } from '../../../../types/types';
+import {
+    GameProp,
+    Data,
+    Settings as SettingsType,
+} from '../../../../types/types';
 import { SocketContext } from '../../socket/socket';
 
 export const Settings = (p: GameProp) => {
     const { game } = p;
-    const initialSettings = {
+    const initialSettings: SettingsType = {
         bombsPerPlayer: game.bombsPerPlayer,
         boxCount: game.boxCount,
         livesPerBox: game.livesPerBox,
     };
 
     const socket = useContext(SocketContext);
-    const emitSettings = (type: string, setting: number) => {
-        const data = { type, setting, roomId: game.id };
+    const [settings, setSettings] = useState<SettingsType>(initialSettings);
+    const emitSettings = (settings: SettingsType) => {
+        const data = { settings, roomId: game.id };
         socket.emit('setSettings', data);
     };
     useEffect(() => {
         socket.on('sendSettings', (data: Data) => {
             const { settings } = data;
+            if (!settings) return;
             setSettings(settings);
         });
         return () => {
             socket.off('sendSettings');
         };
     }, []);
-    const [settings, setSettings] = useState<any>(initialSettings);
+
     if (!settings) return <></>;
     if (game.hostId !== socket.id) {
         return (
             <>
-                <h1>Size {`${settings.size}`}</h1>
-                <h1>Max rounds {`${settings.maxRounds}`}</h1>
-                <h1>Timer {`${settings.timelineTime}`}</h1>
-                <h1>Timelines {`${settings.timelines}`}</h1>
+                <h1>Bombs per player {`${settings.bombsPerPlayer}`}</h1>
+                <h1>Amount of boxes {`${settings.boxCount}`}</h1>
+                <h1>Lives per box {`${settings.livesPerBox}`}</h1>
             </>
         );
     }
     return (
         <div className="settingsWindow" id="settingsWindowId">
-            <div className="settingsWindowField">
-                <label className="settingsText">Players (1-25)</label>
-                <input
-                    type="number"
-                    className="inputBarSettings"
-                    id="playerCountInputId"
-                    name="age"
-                    min="1"
-                    max="25"
-                    value="{}"
-                />
-            </div>
             <div className="settingsWindowField">
                 <label className="settingsText">
                     Bombs per player (1-1000)
@@ -61,7 +54,8 @@ export const Settings = (p: GameProp) => {
                     name="age"
                     min="1"
                     max="1000"
-                    value="3"
+                    onChange={}
+                    value={settings.bombsPerPlayer}
                 />
             </div>
             <div className="settingsWindowField">
@@ -73,7 +67,7 @@ export const Settings = (p: GameProp) => {
                     name="age"
                     min="1"
                     max="25"
-                    value="2"
+                    value={settings.boxCount}
                 />
             </div>
             <div className="settingsWindowField">
@@ -85,7 +79,7 @@ export const Settings = (p: GameProp) => {
                     name="age"
                     min="1"
                     max="1000"
-                    value="10"
+                    value={settings.livesPerBox}
                 />
             </div>
             <div className="settingsWindowField">

@@ -1,6 +1,6 @@
 ////Client & server shared types////
 //Gamestates
-export type GamePhase = 'PreGame' | 'Preparing' | 'InGame' | string;
+export type GamePhase = 'PreGame' | 'Preparing' | 'InGame' | 'Result' | string;
 
 //Players
 type PlayerId = number | null;
@@ -50,6 +50,9 @@ interface ClientToServerEvents {
 //socketData
 export type Data = {
     newRoom?: Room;
+    boxId?: number;
+    slotId?: number;
+    bombCount?: number;
     playerName?: string;
     roomId?: string;
     room?: Game;

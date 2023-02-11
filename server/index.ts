@@ -113,6 +113,13 @@ io.on('connect', (socket: any) => {
         }
     });
 
+    socket.on('fillSlot', (data: Data) => {
+        try {
+        } catch (error) {
+            console.log(error);
+        }
+    });
+
     socket.on('disconnect', (reason: string) => {
         try {
             console.log(`User ${socket.id} disconnected (${reason}).`);

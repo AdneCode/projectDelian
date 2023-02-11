@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
-import { Game, Square, State, Action } from '../../../../types/types';
+import { Game, State, Action } from '../../../../types/types';
 
 const initialState: State = {
     connected: false,
@@ -31,13 +31,9 @@ export const gameSlice = createSlice({
                     break;
                 case 'ARENA_RECEIVED':
                     if (!state.game) break;
-                    state.game.arena = action.payload.arena;
                     break;
                 case 'IX_RECEIVED':
                     state.playerIx = action.payload.ix;
-                    break;
-                case 'SQUARE_RECEIVED':
-                    console.log(state);
                     break;
                 default:
                     return;

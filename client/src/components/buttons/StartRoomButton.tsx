@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { SocketContext } from '../../socket/socket';
-import { Data, RoomProp } from '../../../../types/types';
+import { Data } from '../../../../types/types';
 
-const StartRoomButton = (p: RoomProp) => {
+const StartRoomButton = (p: { roomId: string; hostId: string }) => {
     const { roomId, hostId } = p;
     const socket = useContext(SocketContext);
     if (socket.id !== hostId) return <></>;

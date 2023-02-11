@@ -1,7 +1,6 @@
 import { useEffect, useContext } from 'react';
 import { Data, GameProp } from '../../../../types/types';
 import { SocketContext } from '../../socket/socket';
-import { OutputCanvas } from '../canvas';
 import { useAppDispatch } from '../../hooks/hooks';
 import { gameReducer } from '../../store';
 import './scale.css';
@@ -25,12 +24,6 @@ export function InGame(p: GameProp) {
     return (
         <div className="scale">
             <div className="w-1/2"></div>
-            <OutputCanvas
-                game={game}
-                className="items-center"
-                width={1200}
-                height={1200}
-            />
         </div>
     );
 }

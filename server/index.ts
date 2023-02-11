@@ -26,8 +26,6 @@ import {
     removePlayerFromRoom,
     toggleSpectator,
 } from './roomSystem';
-import { fillArena, getStartPositions, setPlayerDirection } from './gameSystem';
-import { onTick } from './gameSystem/onTick';
 
 //Socket setup
 const io = new Server(server);
@@ -35,18 +33,18 @@ const io = new Server(server);
 let rooms: Rooms = [];
 
 //Timer to keep track in all rooms
-const raiseTimer = () => {
-    try {
-        rooms = onTick(rooms);
-        rooms.map((i: Room) => {
-            const sendData: Data = { room: i };
-            emitToRoom(rooms, i.id, sendData, io);
-        });
-    } catch (error) {
-        console.log(error);
-    }
-};
-setInterval(raiseTimer, 500);
+// const raiseTimer = () => {
+//     try {
+//         rooms = onTick(rooms);
+//         rooms.map((i: Room) => {
+//             const sendData: Data = { room: i };
+//             emitToRoom(rooms, i.id, sendData, io);
+//         });
+//     } catch (error) {
+//         console.log(error);
+//     }
+// };
+// setInterval(raiseTimer, 500);
 
 io.on('connect', (socket: any) => {
     console.log(`User ${socket.id} connected`);
@@ -93,32 +91,23 @@ io.on('connect', (socket: any) => {
             if (!socketIdIsHost(rooms, roomId, socket.id)) return;
             console.log(`User with ID ${socket.id} started room ${roomId}`);
             const { startedRooms, startedRoom } = startRoom(rooms, roomId);
-            const { newRooms, newRoom } = fillArena(startedRooms, startedRoom);
-            rooms = generateNewRooms(newRooms, getStartPositions(newRoom));
             const sendData = { room: findRoomById(rooms, roomId) };
-            emitToRoom(rooms, newRoom.id, sendData, io);
+            emitToRoom(rooms, startedRoom.id, sendData, io);
         } catch (error) {
             console.log(error);
         }
     });
-        //Toggle spectator
-        socket.on('toggleSpectator', () => {
-            try {
-                const foundRoom = findRoomBySocketId(rooms, socket.id)
-                if (!foundRoom) return
-                rooms = generateNewRooms(rooms, toggleSpectator(foundRoom, socket.id));
-                const sendData = { room: findRoomById(rooms, foundRoom.id)}
-                emitToRoom(rooms, foundRoom.id, sendData, io)
-            } catch (error) {
-                console.log(error);
-            }
-        });
-
-    //Changes direction of a player
-    socket.on('setDirection', (data: Data) => {
+    //Toggle spectator
+    socket.on('toggleSpectator', () => {
         try {
-            const { roomId, direction } = data;
-            rooms = setPlayerDirection(rooms, roomId, socket.id, direction);
+            const foundRoom = findRoomBySocketId(rooms, socket.id);
+            if (!foundRoom) return;
+            rooms = generateNewRooms(
+                rooms,
+                toggleSpectator(foundRoom, socket.id),
+            );
+            const sendData = { room: findRoomById(rooms, foundRoom.id) };
+            emitToRoom(rooms, foundRoom.id, sendData, io);
         } catch (error) {
             console.log(error);
         }
@@ -138,7 +127,9 @@ io.on('connect', (socket: any) => {
             );
             rooms = newRooms;
             if (!newRoom) {
-                console.log(`This user was the last user in it's room, the room was removed.`);
+                console.log(
+                    `This user was the last user in it's room, the room was removed.`,
+                );
                 return;
             }
             const sendData = { room: newRoom };

@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { SocketContext } from '../../socket/socket';
-import { Data, NameProp } from '../../../../types/types';
+import { Data } from '../../../../types/types';
 
-const CreateRoomButton = (p: NameProp) => {
+const CreateRoomButton = (p: { name: string }) => {
     const { name } = p;
     const socket = useContext(SocketContext);
     const createRoom = () => {

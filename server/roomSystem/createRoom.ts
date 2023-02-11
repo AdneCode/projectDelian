@@ -9,6 +9,7 @@ export const createRoom = (rooms: Rooms, hostName: string, hostId: string) => {
                 name: hostName,
                 id: hostId,
                 playerId: null,
+                isSpectator: false,
             },
         ],
         phase: 'PreGame',

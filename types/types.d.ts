@@ -8,6 +8,7 @@ export type Player = {
     name: string;
     id: string;
     playerId: PlayerId;
+    isSpectator: boolean;
 };
 type Players = Player[];
 
@@ -23,6 +24,15 @@ export type Game = {
     livesPerBox: number;
 };
 export type Room = Game;
+
+type bombSlot = {
+    id: number;
+    hasBomb: boolean;
+};
+export type Box = {
+    id: number;
+    bombSlots: bombSlot[];
+};
 
 interface ServerToClientEvents {
     error: (error: string) => void;

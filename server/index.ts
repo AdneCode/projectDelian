@@ -148,6 +148,7 @@ io.on('connect', (socket: any) => {
             const { roomId, boxId, slotId, bombCount } = data;
             const foundRoom = findRoomById(rooms, roomId);
             const player = getPlayer(socket.id, foundRoom.players);
+            console.log(bombCount);
             if (
                 !foundRoom ||
                 !player ||

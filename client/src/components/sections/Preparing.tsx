@@ -29,8 +29,10 @@ export function Preparing(p: GameProp) {
             if (!data.bombCount) return;
             setBombCount(data.bombCount);
         });
+
         return () => {
             socket.off('sendRoom');
+            socket.off('updateBombCount');
         };
     }, []);
     return (
@@ -62,7 +64,7 @@ export function Preparing(p: GameProp) {
                         value={sendData.slot}
                     />
                 </div>
-                <BoxList game={game} />
+                <BoxList game={game} sendData={sendData} />
             </div>
         </div>
     );

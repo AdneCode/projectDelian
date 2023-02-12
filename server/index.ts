@@ -192,7 +192,7 @@ io.on('connect', (socket: any) => {
                 players: newPlayers,
             };
             rooms = generateNewRooms(rooms, newRoom);
-            const sendData = { newBombCount };
+            const sendData = { bombCount: newBombCount };
             io.to(socket.id).emit('updateBombCount', sendData);
         } catch (error) {
             console.log(error);

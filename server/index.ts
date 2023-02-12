@@ -39,7 +39,6 @@ import {
 
 //Socket setup
 const io = new Server(server);
-
 let rooms: Rooms = [];
 
 //Timer to keep track in all rooms
@@ -154,7 +153,7 @@ io.on('connect', (socket: any) => {
                 !foundRoom ||
                 !player ||
                 player.bombs - bombCount < 0 ||
-                bombCount === 0 ||
+                bombCount <= 0 ||
                 foundRoom.phase !== 'Preparing'
             )
                 return;

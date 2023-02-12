@@ -1,5 +1,5 @@
 import { GameProp } from '../../../../globalUtility/types';
-import { Lobby, InGame } from '.';
+import { Lobby, InGame, Preparing } from '.';
 
 export function Game(p: GameProp) {
     const { game } = p;
@@ -10,10 +10,17 @@ export function Game(p: GameProp) {
             </div>
         );
     }
-    if (game.phase === 'Preparing' || game.phase === 'InGame') {
+    if (game.phase === 'InGame') {
         return (
             <div>
                 <InGame game={game} />
+            </div>
+        );
+    }
+    if (game.phase === 'Preparing') {
+        return (
+            <div>
+                <Preparing game={game} />
             </div>
         );
     }

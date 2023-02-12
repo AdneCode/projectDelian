@@ -4,8 +4,9 @@ import { SocketContext } from '../../socket/socket';
 import { useAppDispatch } from '../../hooks/hooks';
 import { gameReducer } from '../../store';
 import './scale.css';
+import { BoxList } from '../boxes/BoxList';
 
-export function InGame(p: GameProp) {
+export function Preparing(p: GameProp) {
     const { game } = p;
     const socket = useContext(SocketContext);
     const dispatch = useAppDispatch();
@@ -24,7 +25,9 @@ export function InGame(p: GameProp) {
     }, []);
     return (
         <div className="scale">
-            <div className="w-1/2"></div>
+            <div className="w-1/2">
+                <BoxList game={game} />
+            </div>
         </div>
     );
 }

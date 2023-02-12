@@ -4,3 +4,4 @@ export * from './InGame';
 export * from './NoUserSection';
 export * from './SpectatorToggle';
 export * from './Settings';
+export * from './Preparing';

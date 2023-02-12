@@ -19,6 +19,7 @@ export const startRoom = (rooms: Rooms, roomId: string) => {
         };
         boxes = [...boxes, newBox];
     }
+    console.log(boxes);
     startedRoom.boxes = boxes;
     const startedRooms: Room[] = generateNewRooms(rooms, startedRoom);
     return { startedRooms, startedRoom };

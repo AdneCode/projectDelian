@@ -5,7 +5,7 @@ import { Data } from '../../../../globalUtility/types';
 import { gameReducer } from '../../store';
 import { useAppDispatch } from '../../hooks/hooks';
 import { SocketContext } from '../../socket/socket';
-import { Settings, SpectatorToggle } from '.';
+import { Settings, SpectatorToggle, Messages } from '.';
 
 export function Lobby(p: GameProp) {
     const { game } = p;
@@ -30,6 +30,7 @@ export function Lobby(p: GameProp) {
             <PlayerList players={game.players} hostId={game.hostId} />{' '}
             <StartRoomButton hostId={game.hostId} roomId={game.id} />
             <Settings game={game} />
+            <Messages game={game} />
         </div>
     );
 }

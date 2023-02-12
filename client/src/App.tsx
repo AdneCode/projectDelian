@@ -8,15 +8,15 @@ function App() {
     const { game } = rawState.gameState;
     if (!game) {
         return (
-            <>
+            <div className="App text-white">
                 <NoUserSection />
-            </>
+            </div>
         );
     }
     return (
-        <>
+        <div className="App text-white">
             <Game game={game} />
-        </>
+        </div>
     );
 }
 

@@ -30,11 +30,13 @@ export function NoUserSection() {
             <CreateRoomButton name={name} />
             <div>
                 <input
+                    className="text-black"
                     placeholder="Name"
                     value={name}
                     onChange={(e) => setName(e.target.value)}
                 />
                 <input
+                    className="text-black"
                     placeholder="Room ID"
                     value={roomId}
                     onChange={(e) => setRoomId(e.target.value)}

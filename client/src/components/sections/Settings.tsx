@@ -59,7 +59,7 @@ export const Settings = (p: GameProp) => {
                 </label>
                 <input
                     type="number"
-                    className="inputBarSettings"
+                    className="text-black"
                     id="bombCountInputId"
                     name="age"
                     min={globalSettings.minBombsPerPlayer}
@@ -80,7 +80,7 @@ export const Settings = (p: GameProp) => {
                 </label>
                 <input
                     type="number"
-                    className="inputBarSettings"
+                    className="text-black"
                     id="boxCountInputId"
                     name="age"
                     min={globalSettings.minBoxCount}
@@ -101,7 +101,7 @@ export const Settings = (p: GameProp) => {
                 </label>
                 <input
                     type="number"
-                    className="inputBarSettings"
+                    className="text-black"
                     id="boxLivesInputId"
                     name="age"
                     min={globalSettings.minBoxLives}

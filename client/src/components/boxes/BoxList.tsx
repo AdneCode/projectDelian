@@ -15,7 +15,7 @@ const Boxes = (p: GameProp) => {
     const { game } = p;
     if (!game.boxes) return <></>;
     const boxes = game.boxes.map((i: BoxType) => {
-        return <Box id={i.id} />;
+        return <Box key={i.id} id={i.id} />;
     });
     return <>{boxes}</>;
 };

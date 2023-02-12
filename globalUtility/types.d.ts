@@ -51,6 +51,7 @@ type BombResult = {
 };
 export type Box = {
     id: number;
+    lives: number;
     bombSlots: BombSlot[] | [];
 };
 

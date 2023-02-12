@@ -15,6 +15,7 @@ export const startRoom = (rooms: Rooms, roomId: string) => {
         }
         const newBox: Box = {
             id: i,
+            lives: startedRoom.livesPerBox,
             bombSlots: bombSlots,
         };
         boxes = [...boxes, newBox];

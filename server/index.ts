@@ -1,4 +1,11 @@
-import { Rooms, Data, Room, Box, BombSlot } from '../globalUtility/types';
+import {
+    Rooms,
+    Data,
+    Room,
+    Box,
+    BombSlot,
+    Player,
+} from '../globalUtility/types';
 
 const corsMiddleWare = require('cors');
 const { Server } = require('socket.io');
@@ -27,6 +34,7 @@ import {
     toggleSpectator,
     setSettings,
     getPlayer,
+    getPlayersFromRoom,
 } from './roomSystem';
 
 //Socket setup
@@ -134,6 +142,7 @@ io.on('connect', (socket: any) => {
         }
     });
 
+    //fills a slot when client desires
     socket.on('fillSlot', (data: Data) => {
         try {
             const { roomId, boxId, slotId, bombCount } = data;
@@ -169,8 +178,22 @@ io.on('connect', (socket: any) => {
                 if (i.id === boxId) return newBox;
                 return i;
             });
-            const newRoom = { ...foundRoom, boxes: newBoxes };
+            const newBombCount = player.bombs - bombCount;
+            const newPlayers = getPlayersFromRoom(foundRoom).map(
+                (i: Player) => {
+                    if (i.id === socket.id)
+                        return { ...i, bombs: newBombCount };
+                    return i;
+                },
+            );
+            const newRoom = {
+                ...foundRoom,
+                boxes: newBoxes,
+                players: newPlayers,
+            };
             rooms = generateNewRooms(rooms, newRoom);
+            const sendData = { newBombCount };
+            io.to(socket.id).emit('updateBombCount', sendData);
         } catch (error) {
             console.log(error);
         }

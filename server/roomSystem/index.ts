@@ -10,3 +10,4 @@ export * from './toggleSpectator';
 export * from './removePlayerFromRoom';
 export * from './setSettings';
 export * from './getPlayer';
+export * from './getPlayersFromRoom';

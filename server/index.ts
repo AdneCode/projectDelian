@@ -1,4 +1,4 @@
-import { Rooms, Data, Room } from '../globalUtility/types';
+import { Rooms, Data, Room, Box, BombSlot } from '../globalUtility/types';
 
 const corsMiddleWare = require('cors');
 const { Server } = require('socket.io');
@@ -26,6 +26,7 @@ import {
     removePlayerFromRoom,
     toggleSpectator,
     setSettings,
+    getPlayer,
 } from './roomSystem';
 
 //Socket setup
@@ -135,6 +136,41 @@ io.on('connect', (socket: any) => {
 
     socket.on('fillSlot', (data: Data) => {
         try {
+            const { roomId, boxId, slotId, bombCount } = data;
+            const foundRoom = findRoomById(rooms, roomId);
+            const player = getPlayer(socket.id, foundRoom.players);
+            if (
+                !foundRoom ||
+                !player ||
+                player.bombs - bombCount < 0 ||
+                bombCount === 0
+            )
+                return;
+            const foundBox = foundRoom.boxes.find((i: Box) => {
+                return i.id === boxId;
+            });
+            if (!foundBox) return;
+            const newBombSlots = foundBox.bombSlots.map((i: BombSlot) => {
+                if (i.id === slotId) {
+                    const newPlacedBy = [
+                        ...i.placedBy,
+                        { bombCount: bombCount, name: player.name },
+                    ];
+                    return {
+                        ...i,
+                        bombCount: i.bombCount + bombCount,
+                        placedBy: newPlacedBy,
+                    };
+                }
+                return i;
+            });
+            const newBox = { ...foundBox, bombSlots: newBombSlots };
+            const newBoxes = foundRoom.boxes.map((i: Box) => {
+                if (i.id === boxId) return newBox;
+                return i;
+            });
+            const newRoom = { ...foundRoom, boxes: newBoxes };
+            rooms = generateNewRooms(rooms, newRoom);
         } catch (error) {
             console.log(error);
         }

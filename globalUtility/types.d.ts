@@ -43,7 +43,11 @@ export type Room = Game;
 type BombSlot = {
     id: number;
     bombCount: number;
-    placedBy: string[] | [];
+    placedBy: BombResult[] | [];
+};
+type BombResult = {
+    bombCount: number;
+    name: string;
 };
 export type Box = {
     id: number;
@@ -68,6 +72,7 @@ export type Data = {
     newRoom?: Room;
     boxId?: number;
     slotId?: number;
+    boxCount?: number;
     bombCount?: number;
     playerName?: string;
     roomId?: string;

@@ -149,11 +149,13 @@ io.on('connect', (socket: any) => {
             const foundRoom = findRoomById(rooms, roomId);
             const player = getPlayer(socket.id, foundRoom.players);
             console.log(bombCount);
+            console.log(player.bombs);
             if (
                 !foundRoom ||
                 !player ||
                 player.bombs - bombCount < 0 ||
-                bombCount === 0
+                bombCount === 0 ||
+                foundRoom.phase !== 'Preparing'
             )
                 return;
             const foundBox = foundRoom.boxes.find((i: Box) => {

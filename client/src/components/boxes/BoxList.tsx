@@ -1,9 +1,5 @@
 import { useContext } from 'react';
-import {
-    Box as BoxType,
-    Game,
-    GameProp,
-} from '../../../../globalUtility/types';
+import { Box as BoxType, Game } from '../../../../globalUtility/types';
 import { SocketContext } from '../../socket/socket';
 import { Box } from './Box';
 

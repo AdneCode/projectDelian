@@ -1,12 +1,19 @@
 ////Client & server shared types////
 //Gamestates
-export type GamePhase = 'PreGame' | 'Preparing' | 'InGame' | 'Result' | string;
+export type GamePhase =
+    | 'PreGame'
+    | 'Preparing'
+    | 'InGame'
+    | 'BombFound'
+    | 'Result'
+    | string;
 
 //Players
 type PlayerId = number | null;
 export type Player = {
     name: string;
     id: string;
+    bombs: number | null;
     playerId: PlayerId;
     isSpectator: boolean;
 };
@@ -22,6 +29,7 @@ export type Game = {
     boxCount: number;
     //boxCount === amount of boxes
     livesPerBox: number;
+    boxes: Box[] | null;
 };
 
 export type Settings = {
@@ -32,13 +40,14 @@ export type Settings = {
 
 export type Room = Game;
 
-type bombSlot = {
+type BombSlot = {
     id: number;
-    hasBomb: boolean;
+    bombCount: number;
+    placedBy: string[] | [];
 };
 export type Box = {
     id: number;
-    bombSlots: bombSlot[];
+    bombSlots: BombSlot[] | [];
 };
 
 interface ServerToClientEvents {

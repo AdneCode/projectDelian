@@ -9,6 +9,7 @@ import { Settings, SpectatorToggle } from '.';
 
 export function Lobby(p: GameProp) {
     const { game } = p;
+    console.log('GAME', game);
     const dispatch = useAppDispatch();
     const socket = useContext(SocketContext);
     useEffect(() => {

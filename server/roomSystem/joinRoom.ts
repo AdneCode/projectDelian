@@ -9,6 +9,7 @@ export const joinRoom = (
     const newPlayer: Player = {
         name: playerName,
         id: socketId,
+        bombs: null,
         playerId: null,
         isSpectator: false,
     };

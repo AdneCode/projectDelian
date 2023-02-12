@@ -8,6 +8,7 @@ export const createRoom = (rooms: Rooms, hostName: string, hostId: string) => {
             {
                 name: hostName,
                 id: hostId,
+                bombs: null,
                 playerId: null,
                 isSpectator: false,
             },
@@ -16,6 +17,7 @@ export const createRoom = (rooms: Rooms, hostName: string, hostId: string) => {
         bombsPerPlayer: 3,
         boxCount: 2,
         livesPerBox: 10,
+        boxes: null,
     };
     return { newRooms: [...rooms, room], newRoom: room };
 };

@@ -16,6 +16,7 @@ export function NoUserSection() {
     };
     useEffect(() => {
         socket.on('sendRoom', (data: Data) => {
+            console.log(data);
             if (!data.room) return;
             dispatch(gameReducer({ type: 'GAME_RECEIVED', game: data.room }));
             dispatch(gameReducer({ type: 'SET_CONNECTED' }));

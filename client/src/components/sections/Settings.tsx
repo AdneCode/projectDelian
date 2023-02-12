@@ -1,4 +1,3 @@
-import { globalSettings } from '../../../../globalUtility/settings';
 import { useState, useContext, useEffect } from 'react';
 import {
     GameProp,
@@ -6,6 +5,15 @@ import {
     Settings as SettingsType,
 } from '../../../../globalUtility/types';
 import { SocketContext } from '../../socket/socket';
+
+const globalSettings = {
+    minBombsPerPlayer: 1,
+    maxBombsPerPlayer: 100,
+    minBoxCount: 2,
+    maxBoxCount: 25,
+    minBoxLives: 1,
+    maxBoxLives: 100,
+};
 
 export const Settings = (p: GameProp) => {
     const { game } = p;
@@ -36,9 +44,9 @@ export const Settings = (p: GameProp) => {
     if (game.hostId !== socket.id) {
         return (
             <>
-                <h1>Bombs per player {`${settings.bombsPerPlayer}`}</h1>
-                <h1>Amount of boxes {`${settings.boxCount}`}</h1>
-                <h1>Lives per box {`${settings.livesPerBox}`}</h1>
+                <h1>Bombs per player {`${game.bombsPerPlayer}`}</h1>
+                <h1>Amount of boxes {`${game.boxCount}`}</h1>
+                <h1>Lives per box {`${game.livesPerBox}`}</h1>
             </>
         );
     }
@@ -107,21 +115,9 @@ export const Settings = (p: GameProp) => {
                     value={settings.livesPerBox}
                 />
             </div>
-            <div className="settingsWindowField">
-                <label className="fullscreenText">Fullscreen</label>
-                <input
-                    type="checkbox"
-                    className="checkbox"
-                    id="fullscreenCheckBoxId"
-                    name="fullscreen"
-                />
-            </div>
-            <input
-                type="button"
-                className="bigButton"
-                id="backButtonId"
-                value="Back"
-            />
+            <button onClick={() => emitSettings(settings)}>
+                Change settings
+            </button>
         </div>
     );
 };

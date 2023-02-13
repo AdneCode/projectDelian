@@ -17,5 +17,5 @@ const Boxes = (p: GameProp) => {
     const boxes = game.boxes.map((i: BoxType) => {
         return <Box key={i.id} id={i.id} />;
     });
-    return <>{boxes}</>;
+    return <div className="w-3/4 flex flex-wrap">{boxes}</div>;
 };

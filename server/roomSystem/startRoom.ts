@@ -8,7 +8,7 @@ export const startRoom = (rooms: Rooms, roomId: string) => {
         return { ...i, bombs: startedRoom.bombsPerPlayer };
     });
     let boxes = [];
-    for (let i = 1; i < startedRoom.boxCount; i++) {
+    for (let i = 1; i <= startedRoom.boxCount; i++) {
         let bombSlots: BombSlot[] = [];
         for (let j = 0; j < startedRoom.livesPerBox; j++) {
             bombSlots = [...bombSlots, { id: j, bombCount: 0, placedBy: [] }];

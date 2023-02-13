@@ -1,11 +1,4 @@
-import {
-    Rooms,
-    Data,
-    Room,
-    Box,
-    BombSlot,
-    Player,
-} from '../globalUtility/types';
+import { Rooms, Data, Box, BombSlot, Player } from '../globalUtility/types';
 
 const corsMiddleWare = require('cors');
 const { Server } = require('socket.io');
@@ -73,6 +66,7 @@ io.on('connect', (socket: any) => {
             console.log(error);
         }
     });
+
     //Handles a player attempting to join a room
     socket.on('joinRoom', (data: Data) => {
         try {

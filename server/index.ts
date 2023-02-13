@@ -1,11 +1,4 @@
-import {
-    Rooms,
-    Data,
-    Room,
-    Box,
-    BombSlot,
-    Player,
-} from '../globalUtility/types';
+import { Rooms, Data, Box, BombSlot, Player } from '../globalUtility/types';
 
 const corsMiddleWare = require('cors');
 const { Server } = require('socket.io');
@@ -39,7 +32,6 @@ import {
 
 //Socket setup
 const io = new Server(server);
-
 let rooms: Rooms = [];
 
 //Timer to keep track in all rooms
@@ -74,6 +66,7 @@ io.on('connect', (socket: any) => {
             console.log(error);
         }
     });
+
     //Handles a player attempting to join a room
     socket.on('joinRoom', (data: Data) => {
         try {
@@ -148,11 +141,14 @@ io.on('connect', (socket: any) => {
             const { roomId, boxId, slotId, bombCount } = data;
             const foundRoom = findRoomById(rooms, roomId);
             const player = getPlayer(socket.id, foundRoom.players);
+            console.log(bombCount);
+            console.log(player.bombs);
             if (
                 !foundRoom ||
                 !player ||
                 player.bombs - bombCount < 0 ||
-                bombCount === 0
+                bombCount <= 0 ||
+                foundRoom.phase !== 'Preparing'
             )
                 return;
             const foundBox = foundRoom.boxes.find((i: Box) => {

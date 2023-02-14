@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction, current } from '@reduxjs/toolkit';
-import { Game, State, Action } from '../../../../globalUtility/types';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { State, Action } from '../../../../globalUtility/types';
 
 const initialState: State = {
     connected: false,

@@ -43,6 +43,7 @@ export function Preparing(p: GameProp) {
             socket.off('getRoom');
             socket.off('sendRoom');
             socket.off('updateBombCount');
+            socket.off('endPrepare');
         };
     }, []);
     return (

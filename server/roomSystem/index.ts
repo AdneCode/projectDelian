@@ -11,3 +11,6 @@ export * from './removePlayerFromRoom';
 export * from './setSettings';
 export * from './getPlayer';
 export * from './getPlayersFromRoom';
+export * from './findBoxById';
+export * from './findRoomById';
+export * from './getNewTurn';

@@ -30,6 +30,8 @@ export type Game = {
     //boxCount === amount of boxes
     livesPerBox: number;
     boxes: Box[] | null;
+    currentTurn: string | null;
+    turnTable: string[] | null;
 };
 
 export type Settings = {

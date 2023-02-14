@@ -18,6 +18,8 @@ export const createRoom = (rooms: Rooms, hostName: string, hostId: string) => {
         boxCount: 2,
         livesPerBox: 10,
         boxes: null,
+        turnTable: null,
+        currentTurn: null,
     };
     return { newRooms: [...rooms, room], newRoom: room };
 };

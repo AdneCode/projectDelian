@@ -25,9 +25,8 @@ export const gameSlice = createSlice({
                     state.game = action.payload.game;
                     break;
                 case 'PHASE_CHANGE':
-                    console.log(current(state));
-                    // if (!state.game) break;
-                    // state.game.phase = action.payload.phase;
+                    if (!state.game) break;
+                    state.game.phase = action.payload.phase;
                     break;
                 case 'ARENA_RECEIVED':
                     if (!state.game) break;

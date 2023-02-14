@@ -30,6 +30,10 @@ export function Preparing(p: GameProp) {
         socket.on('updateBombCount', (data: Data) => {
             setBombCount(data.bombCount);
         });
+        socket.on('endPrepare', () => {
+            console.log('ENDPREPARE');
+            dispatch(gameReducer({ type: 'PHASE_CHANGE', phase: 'InGame' }));
+        });
 
         socket.on('getRoom', (data: Data) => {
             console.log(data);

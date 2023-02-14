@@ -1,4 +1,3 @@
-import { isRoomPrepared } from 'roomSystem/isRoomPrepared';
 import { Rooms, Data, Box, BombSlot, Player } from '../globalUtility/types';
 
 const corsMiddleWare = require('cors');
@@ -29,6 +28,7 @@ import {
     setSettings,
     getPlayer,
     getPlayersFromRoom,
+    isRoomPrepared,
 } from './roomSystem';
 
 //Socket setup
@@ -117,7 +117,6 @@ io.on('connect', (socket: any) => {
             console.log(error);
         }
     });
-
     //Handles an host changing settings
     socket.on('setSettings', (data: Data) => {
         try {
@@ -136,7 +135,6 @@ io.on('connect', (socket: any) => {
             console.log(error);
         }
     });
-
     //fills a slot when client desires
     socket.on('fillSlot', (data: Data) => {
         try {
@@ -153,7 +151,6 @@ io.on('connect', (socket: any) => {
                 foundRoom.phase !== 'Preparing'
             )
                 return;
-            console.log('155');
             const foundBox = foundRoom.boxes.find((i: Box) => {
                 return i.id === boxId;
             });
@@ -194,7 +191,7 @@ io.on('connect', (socket: any) => {
             const sendData = { bombCount: newBombCount };
             io.to(socket.id).emit('updateBombCount', sendData);
             if (isRoomPrepared(newRoom)) {
-                const preparedRoom = { ...newRoom, phase: 'inGame' };
+                const preparedRoom = { ...newRoom, phase: 'InGame' };
                 rooms = generateNewRooms(rooms, preparedRoom);
                 emitToRoom(rooms, newRoom.id, null, io, 'endPrepare');
             }

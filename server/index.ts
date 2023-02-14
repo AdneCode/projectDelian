@@ -1,3 +1,4 @@
+import { isRoomPrepared } from 'roomSystem/isRoomPrepared';
 import { Rooms, Data, Box, BombSlot, Player } from '../globalUtility/types';
 
 const corsMiddleWare = require('cors');
@@ -82,7 +83,7 @@ io.on('connect', (socket: any) => {
             );
             rooms = newRooms;
             const sendData = { room: newRoom };
-            emitToRoom(rooms, newRoom.id, sendData, io);
+            emitToRoom(rooms, newRoom.id, sendData, io, 'sendRoom');
         } catch (error) {
             console.log(error);
         }
@@ -96,7 +97,7 @@ io.on('connect', (socket: any) => {
             const { newRooms, startedRoom } = startRoom(rooms, roomId);
             rooms = newRooms;
             const sendData = { room: findRoomById(rooms, roomId) };
-            emitToRoom(rooms, startedRoom.id, sendData, io);
+            emitToRoom(rooms, startedRoom.id, sendData, io, 'sendRoom');
         } catch (error) {
             console.log(error);
         }
@@ -111,7 +112,7 @@ io.on('connect', (socket: any) => {
                 toggleSpectator(foundRoom, socket.id),
             );
             const sendData = { room: findRoomById(rooms, foundRoom.id) };
-            emitToRoom(rooms, foundRoom.id, sendData, io);
+            emitToRoom(rooms, foundRoom.id, sendData, io, 'sendRoom');
         } catch (error) {
             console.log(error);
         }
@@ -130,7 +131,7 @@ io.on('connect', (socket: any) => {
             );
             rooms = newRooms;
             const sendData = { room: newRoom };
-            emitToRoom(rooms, newRoom.id, sendData, io);
+            emitToRoom(rooms, newRoom.id, sendData, io, 'sendRoom');
         } catch (error) {
             console.log(error);
         }
@@ -192,6 +193,9 @@ io.on('connect', (socket: any) => {
             rooms = generateNewRooms(rooms, newRoom);
             const sendData = { bombCount: newBombCount };
             io.to(socket.id).emit('updateBombCount', sendData);
+            if (isRoomPrepared) {
+                emitToRoom(rooms, newRoom.id, null, io, 'sendRoom');
+            }
         } catch (error) {
             console.log(error);
         }
@@ -221,7 +225,7 @@ io.on('connect', (socket: any) => {
                 return;
             }
             const sendData = { room: newRoom };
-            emitToRoom(rooms, newRoom.id, sendData, io);
+            emitToRoom(rooms, newRoom.id, sendData, io, 'sendRoom');
         } catch (error) {
             console.log(error);
         }

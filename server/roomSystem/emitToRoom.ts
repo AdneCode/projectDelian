@@ -1,9 +1,19 @@
 import { Rooms, Room, Data } from '../../globalUtility/types';
-const emitToRoom = (rooms: Rooms, roomId: string, data: Data, io) => {
+const emitToRoom = (
+    rooms: Rooms,
+    roomId: string,
+    data: Data | null,
+    io,
+    endpoint: string,
+) => {
     rooms.map((i: Room) => {
         if (i.id === roomId) {
             i.players.map((i) => {
-                io.to(i.id).emit('sendRoom', data);
+                if (data === null) {
+                    io.to(i.id).emit(endpoint);
+                    return;
+                }
+                io.to(i.id).emit(endpoint, data);
             });
         }
         return;

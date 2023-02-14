@@ -193,8 +193,10 @@ io.on('connect', (socket: any) => {
             rooms = generateNewRooms(rooms, newRoom);
             const sendData = { bombCount: newBombCount };
             io.to(socket.id).emit('updateBombCount', sendData);
-            if (isRoomPrepared) {
-                emitToRoom(rooms, newRoom.id, null, io, 'sendRoom');
+            if (isRoomPrepared(newRoom)) {
+                const preparedRoom = { ...newRoom, phase: 'inGame' };
+                rooms = generateNewRooms(rooms, preparedRoom);
+                emitToRoom(rooms, newRoom.id, null, io, 'endPrepare');
             }
         } catch (error) {
             console.log(error);

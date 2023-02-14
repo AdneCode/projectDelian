@@ -11,7 +11,9 @@ export function Preparing(p: GameProp) {
     const { game } = p;
     const socket = useContext(SocketContext);
     const dispatch = useAppDispatch();
-    const [bombCount, setBombCount] = useState<number>(game.bombsPerPlayer);
+    const [bombCount, setBombCount] = useState<number | undefined>(
+        game.bombsPerPlayer,
+    );
     const [sendData, setSendData] = useState<{ bombs: number; slot: number }>({
         bombs: 1,
         slot: 0,
@@ -26,11 +28,15 @@ export function Preparing(p: GameProp) {
             );
         });
         socket.on('updateBombCount', (data: Data) => {
-            if (!data.bombCount) return;
             setBombCount(data.bombCount);
         });
 
+        socket.on('getRoom', (data: Data) => {
+            console.log(data);
+        });
+
         return () => {
+            socket.off('getRoom');
             socket.off('sendRoom');
             socket.off('updateBombCount');
         };
@@ -38,6 +44,7 @@ export function Preparing(p: GameProp) {
     return (
         <div className="scale">
             <div className="w-1/2">
+                <button onClick={() => socket.emit('testing')}>TEST</button>
                 <div>
                     <label>Amount of bombs ({bombCount} remaining)</label>
                     <input

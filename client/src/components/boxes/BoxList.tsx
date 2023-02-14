@@ -8,6 +8,7 @@ export const BoxList = (p: {
     sendData: { bombs: number; slot: number };
 }) => {
     const { game, sendData } = p;
+    console.log(game);
     return (
         <>
             <Boxes game={game} sendData={sendData} />

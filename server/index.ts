@@ -93,7 +93,8 @@ io.on('connect', (socket: any) => {
             const { roomId } = data;
             if (!socketIdIsHost(rooms, roomId, socket.id)) return;
             console.log(`User with ID ${socket.id} started room ${roomId}`);
-            const { startedRooms, startedRoom } = startRoom(rooms, roomId);
+            const { newRooms, startedRoom } = startRoom(rooms, roomId);
+            rooms = newRooms;
             const sendData = { room: findRoomById(rooms, roomId) };
             emitToRoom(rooms, startedRoom.id, sendData, io);
         } catch (error) {
@@ -141,8 +142,8 @@ io.on('connect', (socket: any) => {
             const { roomId, boxId, slotId, bombCount } = data;
             const foundRoom = findRoomById(rooms, roomId);
             const player = getPlayer(socket.id, foundRoom.players);
-            console.log(bombCount);
-            console.log(player.bombs);
+            console.log('BOMBCOUNT', bombCount);
+            console.log('BOMBS', player.bombs);
             if (
                 !foundRoom ||
                 !player ||
@@ -151,6 +152,7 @@ io.on('connect', (socket: any) => {
                 foundRoom.phase !== 'Preparing'
             )
                 return;
+            console.log('155');
             const foundBox = foundRoom.boxes.find((i: Box) => {
                 return i.id === boxId;
             });
@@ -193,6 +195,10 @@ io.on('connect', (socket: any) => {
         } catch (error) {
             console.log(error);
         }
+    });
+
+    socket.on('testing', () => {
+        io.emit('getRoom', rooms);
     });
 
     socket.on('disconnect', (reason: string) => {

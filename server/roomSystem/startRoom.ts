@@ -27,6 +27,6 @@ export const startRoom = (rooms: Rooms, roomId: string) => {
     });
     startedRoom.turnTable = turnTable;
     startedRoom.currentTurn = turnTable[0];
-    const startedRooms: Room[] = generateNewRooms(rooms, startedRoom);
-    return { startedRooms, startedRoom };
+    const newRooms: Room[] = generateNewRooms(rooms, startedRoom);
+    return { newRooms, startedRoom };
 };

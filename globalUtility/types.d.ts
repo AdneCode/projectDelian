@@ -27,6 +27,7 @@ export type Game = {
     phase: GamePhase;
     bombsPerPlayer: number;
     boxCount: number;
+    messages?: string[];
     //boxCount === amount of boxes
     livesPerBox: number;
     boxes: Box[] | null;
@@ -78,6 +79,7 @@ export type Data = {
     boxCount?: number;
     bombCount?: number;
     playerName?: string;
+    message?: string;
     roomId?: string;
     room?: Game;
     settings?: Settings;

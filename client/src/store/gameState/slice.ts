@@ -38,9 +38,20 @@ export const gameSlice = createSlice({
                     return;
             }
         },
+        messageReducer: (state: State, action: { payload: string }) => {
+            const message = action.payload;
+            if (!state.game || !state.game.messages) return;
+            state.game.messages = [...state.game.messages, message];
+        },
+        messageArrayReducer: (state: State, action: { payload: string[] }) => {
+            const messageArray = action.payload;
+            if (!state.game || !state.game.messages) return;
+            state.game.messages = messageArray;
+        },
     },
 });
 
-export const { gameReducer } = gameSlice.actions;
+export const { gameReducer, messageReducer, messageArrayReducer } =
+    gameSlice.actions;
 
 export default gameSlice.reducer;

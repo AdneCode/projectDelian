@@ -148,6 +148,7 @@ io.on('connect', (socket: any) => {
                 !player ||
                 player.bombs - bombCount < 0 ||
                 bombCount <= 0 ||
+                slotId >= foundRoom.livesPerBox ||
                 foundRoom.phase !== 'Preparing'
             )
                 return;

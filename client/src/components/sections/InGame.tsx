@@ -4,6 +4,7 @@ import { SocketContext } from '../../socket/socket';
 import { useAppDispatch } from '../../hooks/hooks';
 import { gameReducer } from '../../store';
 import { BoxList } from '../boxes/BoxList';
+import { Messages } from './Messages';
 import './scale.css';
 
 export function InGame(p: GameProp) {
@@ -33,6 +34,7 @@ export function InGame(p: GameProp) {
                 <button onClick={() => socket.emit('testing')}>TEST</button>
 
                 <BoxList game={game} />
+                <Messages game={game} />
             </div>
         </div>
     );

@@ -84,6 +84,13 @@ io.on('connect', (socket: any) => {
             rooms = newRooms;
             const sendData = { room: newRoom };
             emitToRoom(rooms, newRoom.id, sendData, io, 'sendRoom');
+            emitToRoom(
+                rooms,
+                newRoom.id,
+                { message: `${playerName} joined the room` },
+                io,
+                'receiveMessage',
+            );
         } catch (error) {
             console.log(error);
         }

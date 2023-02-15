@@ -1,4 +1,3 @@
-import { isRoomPrepared } from 'roomSystem/isRoomPrepared';
 import { Rooms, Data, Box, BombSlot, Player } from '../globalUtility/types';
 
 const corsMiddleWare = require('cors');
@@ -29,6 +28,7 @@ import {
     setSettings,
     getPlayer,
     getPlayersFromRoom,
+    isRoomPrepared,
 } from './roomSystem';
 
 //Socket setup

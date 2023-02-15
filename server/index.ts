@@ -117,7 +117,6 @@ io.on('connect', (socket: any) => {
             console.log(error);
         }
     });
-
     //Handles an host changing settings
     socket.on('setSettings', (data: Data) => {
         try {
@@ -136,7 +135,6 @@ io.on('connect', (socket: any) => {
             console.log(error);
         }
     });
-
     //fills a slot when client desires
     socket.on('fillSlot', (data: Data) => {
         try {
@@ -150,10 +148,10 @@ io.on('connect', (socket: any) => {
                 !player ||
                 player.bombs - bombCount < 0 ||
                 bombCount <= 0 ||
+                slotId >= foundRoom.livesPerBox ||
                 foundRoom.phase !== 'Preparing'
             )
                 return;
-            console.log('155');
             const foundBox = foundRoom.boxes.find((i: Box) => {
                 return i.id === boxId;
             });
@@ -194,7 +192,7 @@ io.on('connect', (socket: any) => {
             const sendData = { bombCount: newBombCount };
             io.to(socket.id).emit('updateBombCount', sendData);
             if (isRoomPrepared(newRoom)) {
-                const preparedRoom = { ...newRoom, phase: 'inGame' };
+                const preparedRoom = { ...newRoom, phase: 'InGame' };
                 rooms = generateNewRooms(rooms, preparedRoom);
                 emitToRoom(rooms, newRoom.id, null, io, 'endPrepare');
             }

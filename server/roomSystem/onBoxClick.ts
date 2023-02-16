@@ -21,9 +21,13 @@ export const onBoxClick = (
     const newTurnId = getNewTurn(foundRoom);
     let playerFoundBomb: boolean = false;
     const foundBox: Box = findBoxById(foundRoom, boxId);
+    if (foundBox.lives <= 0) return null;
     if (bombSlotHasBombs(foundBox.bombSlots[foundBox.lives - 1])) {
         playerFoundBomb = true;
     }
+    const bombsInSlot = countBombsInSlot(
+        foundBox.bombSlots[foundBox.lives - 1],
+    );
     if (playerFoundBomb) {
         emitToRoom(
             rooms,
@@ -31,9 +35,9 @@ export const onBoxClick = (
             {
                 message: `${
                     getPlayer(playerId, foundRoom.players).name
-                } found ${countBombsInSlot(
-                    foundBox.bombSlots[foundBox.lives - 1],
-                )} bombs. It's now the turn of ${
+                } found ${bombsInSlot} ${
+                    bombsInSlot >= 2 ? 'bombs' : 'bomb'
+                }. It's now the turn of ${
                     getPlayer(newTurnId, foundRoom.players).name
                 }`,
             },
@@ -48,7 +52,9 @@ export const onBoxClick = (
             {
                 message: `${
                     getPlayer(playerId, foundRoom.players).name
-                } found no bombs.`,
+                } found no bombs. It's now the turn of ${
+                    getPlayer(newTurnId, foundRoom.players).name
+                }`,
             },
             io,
             'receiveMessage',

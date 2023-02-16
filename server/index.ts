@@ -148,8 +148,6 @@ io.on('connect', (socket: any) => {
             const { roomId, boxId, slotId, bombCount } = data;
             const foundRoom = findRoomById(rooms, roomId);
             const player = getPlayer(socket.id, foundRoom.players);
-            console.log('BOMBCOUNT', bombCount);
-            console.log('BOMBS', player.bombs);
             if (
                 !foundRoom ||
                 !player ||

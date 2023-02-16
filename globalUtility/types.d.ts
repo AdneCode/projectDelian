@@ -55,7 +55,7 @@ type BombResult = {
 export type Box = {
     id: number;
     lives: number;
-    bombSlots: BombSlot[] | [];
+    bombSlots?: BombSlot[] | [];
 };
 
 interface ServerToClientEvents {

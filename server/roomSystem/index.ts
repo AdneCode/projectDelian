@@ -15,3 +15,4 @@ export * from './findBoxById';
 export * from './findRoomById';
 export * from './getNewTurn';
 export * from './isRoomPrepared';
+export * from './cleanBoxEmit';

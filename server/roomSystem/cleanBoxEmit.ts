@@ -5,6 +5,5 @@ export const cleanBoxEmit = (room: Room) => {
     const cleanedBoxes = room.boxes.map((i: Box) => {
         return { id: i.id, lives: i.lives };
     });
-
     return { ...room, boxes: cleanedBoxes };
 };

@@ -16,3 +16,5 @@ export * from './findRoomById';
 export * from './getNewTurn';
 export * from './isRoomPrepared';
 export * from './cleanBoxEmit';
+export * from './onBoxClick';
+export * from './bombSlotHasBombs';

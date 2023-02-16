@@ -37,6 +37,7 @@ import {
     getPlayersFromRoom,
     isRoomPrepared,
     cleanBoxEmit,
+    onBoxClick,
 } from './roomSystem';
 
 //Socket setup
@@ -227,6 +228,14 @@ io.on('connect', (socket: any) => {
         );
     });
 
+    socket.on('hitSlot', (data: Data) => {
+        const { boxId, roomId } = data;
+        if (!boxId || !roomId) return;
+        const newRoom = onBoxClick(rooms, roomId, boxId, socket.id, io);
+        if (!newRoom) return;
+        rooms = generateNewRooms(rooms, newRoom);
+    });
+
     socket.on('disconnect', (reason: string) => {
         try {
             console.log(`User ${socket.id} disconnected (${reason}).`);
@@ -246,7 +255,7 @@ io.on('connect', (socket: any) => {
                 );
                 return;
             }
-            const sendData = { room: newRoom };
+            const sendData = { room: cleanBoxEmit(newRoom) };
             emitToRoom(rooms, newRoom.id, sendData, io, 'sendRoom');
         } catch (error) {
             console.log(error);

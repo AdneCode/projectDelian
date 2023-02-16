@@ -29,6 +29,7 @@ import {
     getPlayer,
     getPlayersFromRoom,
     isRoomPrepared,
+    cleanBoxEmit,
 } from './roomSystem';
 
 //Socket setup
@@ -82,7 +83,7 @@ io.on('connect', (socket: any) => {
                 socket.id,
             );
             rooms = newRooms;
-            const sendData = { room: newRoom };
+            const sendData = { room: cleanBoxEmit(newRoom) };
             emitToRoom(rooms, newRoom.id, sendData, io, 'sendRoom');
             emitToRoom(
                 rooms,
@@ -103,7 +104,9 @@ io.on('connect', (socket: any) => {
             console.log(`User with ID ${socket.id} started room ${roomId}`);
             const { newRooms, startedRoom } = startRoom(rooms, roomId);
             rooms = newRooms;
-            const sendData = { room: findRoomById(rooms, roomId) };
+            const sendData = {
+                room: cleanBoxEmit(findRoomById(rooms, roomId)),
+            };
             emitToRoom(rooms, startedRoom.id, sendData, io, 'sendRoom');
         } catch (error) {
             console.log(error);
@@ -118,7 +121,9 @@ io.on('connect', (socket: any) => {
                 rooms,
                 toggleSpectator(foundRoom, socket.id),
             );
-            const sendData = { room: findRoomById(rooms, foundRoom.id) };
+            const sendData = {
+                room: cleanBoxEmit(findRoomById(rooms, foundRoom.id)),
+            };
             emitToRoom(rooms, foundRoom.id, sendData, io, 'sendRoom');
         } catch (error) {
             console.log(error);
@@ -136,7 +141,7 @@ io.on('connect', (socket: any) => {
                 roomId,
             );
             rooms = newRooms;
-            const sendData = { room: newRoom };
+            const sendData = { room: cleanBoxEmit(newRoom) };
             emitToRoom(rooms, newRoom.id, sendData, io, 'sendRoom');
         } catch (error) {
             console.log(error);

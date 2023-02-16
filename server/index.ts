@@ -1,4 +1,11 @@
-import { Rooms, Data, Box, BombSlot, Player } from '../globalUtility/types';
+import {
+    Rooms,
+    Data,
+    Box,
+    BombSlot,
+    Player,
+    Room,
+} from '../globalUtility/types';
 
 const corsMiddleWare = require('cors');
 const { Server } = require('socket.io');
@@ -212,7 +219,12 @@ io.on('connect', (socket: any) => {
     });
 
     socket.on('testing', () => {
-        io.emit('getRoom', rooms);
+        io.emit(
+            'getRoom',
+            rooms.map((i: Room) => {
+                return cleanBoxEmit(i);
+            }),
+        );
     });
 
     socket.on('disconnect', (reason: string) => {

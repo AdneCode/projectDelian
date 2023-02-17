@@ -19,6 +19,7 @@ export const onBoxClick = (
     const foundRoom = findRoomById(rooms, roomId);
     if (foundRoom.currentTurn !== playerId) return null;
     const newTurnId = getNewTurn(foundRoom);
+    console.log('NEWTURN');
     let playerFoundBomb: boolean = false;
     const foundBox: Box = findBoxById(foundRoom, boxId);
     if (foundBox.lives <= 0) return null;
@@ -28,18 +29,18 @@ export const onBoxClick = (
     const bombsInSlot = countBombsInSlot(
         foundBox.bombSlots[foundBox.lives - 1],
     );
+    const currentPlayer = getPlayer(playerId, foundRoom.players);
+    const currentPlayerName = currentPlayer.name;
+    const nextPlayer = getPlayer(newTurnId, foundRoom.players);
+    const nextPlayerName = nextPlayer.name;
     if (playerFoundBomb) {
         emitToRoom(
             rooms,
             foundRoom.id,
             {
-                message: `${
-                    getPlayer(playerId, foundRoom.players).name
-                } found ${bombsInSlot} ${
+                message: `${currentPlayerName} found ${bombsInSlot} ${
                     bombsInSlot >= 2 ? 'bombs' : 'bomb'
-                }. It's now the turn of ${
-                    getPlayer(newTurnId, foundRoom.players).name
-                }`,
+                }. It's now the turn of ${nextPlayerName}`,
             },
             io,
             'receiveMessage',
@@ -50,11 +51,7 @@ export const onBoxClick = (
             rooms,
             foundRoom.id,
             {
-                message: `${
-                    getPlayer(playerId, foundRoom.players).name
-                } found no bombs. It's now the turn of ${
-                    getPlayer(newTurnId, foundRoom.players).name
-                }`,
+                message: `${currentPlayerName} found no bombs. It's now the turn of ${nextPlayerName}`,
             },
             io,
             'receiveMessage',

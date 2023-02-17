@@ -6,6 +6,7 @@ const initialState: State = {
     error: null,
     playerIx: null,
     game: null,
+    messages: [],
 };
 
 export const gameSlice = createSlice({
@@ -40,13 +41,11 @@ export const gameSlice = createSlice({
         },
         messageReducer: (state: State, action: { payload: string }) => {
             const message = action.payload;
-            if (!state.game || !state.game.messages) return;
-            state.game.messages = [...state.game.messages, message];
+            state.messages = [...state.messages, message];
         },
         messageArrayReducer: (state: State, action: { payload: string[] }) => {
             const messageArray = action.payload;
-            if (!state.game || !state.game.messages) return;
-            state.game.messages = messageArray;
+            state.messages = messageArray;
         },
     },
 });

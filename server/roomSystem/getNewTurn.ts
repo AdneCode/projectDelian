@@ -6,5 +6,8 @@ export const getNewTurn = (room: Room) => {
     if (turnTable.length === currentIndex) {
         return turnTable[0];
     }
-    return turnTable[currentTurn + 1];
+    if (turnTable.length === 1) {
+        return turnTable[0];
+    }
+    return turnTable[currentIndex + 1];
 };

@@ -234,6 +234,8 @@ io.on('connect', (socket: any) => {
         const newRoom = onBoxClick(rooms, roomId, boxId, socket.id, io);
         if (!newRoom) return;
         rooms = generateNewRooms(rooms, newRoom);
+        const sendData = { room: cleanBoxEmit(newRoom) };
+        emitToRoom(rooms, newRoom.id, sendData, io, 'sendRoom');
     });
 
     socket.on('disconnect', (reason: string) => {

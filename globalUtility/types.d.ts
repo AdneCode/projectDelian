@@ -93,14 +93,10 @@ export type State = {
     error: string | null;
     playerIx: number | null;
     game: Game | null;
+    messages: string[] | [];
 };
 export type RawState = {
-    gameState: {
-        connected: boolean;
-        error: string | null;
-        playerIx: number | null;
-        game: Game | null;
-    };
+    gameState: State;
 };
 
 //Actions

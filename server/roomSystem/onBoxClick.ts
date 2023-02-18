@@ -19,7 +19,6 @@ export const onBoxClick = (
     const foundRoom = findRoomById(rooms, roomId);
     if (foundRoom.currentTurn !== playerId) return null;
     const newTurnId = getNewTurn(foundRoom);
-    console.log('NEWTURN');
     let playerFoundBomb: boolean = false;
     const foundBox: Box = findBoxById(foundRoom, boxId);
     if (foundBox.lives <= 0) return null;

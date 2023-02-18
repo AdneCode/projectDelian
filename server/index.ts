@@ -170,6 +170,7 @@ io.on('connect', (socket: any) => {
                 foundRoom.phase !== 'Preparing'
             )
                 return;
+            //Feedback?
             const foundBox = foundRoom.boxes.find((i: Box) => {
                 return i.id === boxId;
             });

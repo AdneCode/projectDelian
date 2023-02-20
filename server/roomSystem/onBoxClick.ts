@@ -32,6 +32,7 @@ export const onBoxClick = (
     const currentPlayerName = currentPlayer.name;
     const nextPlayer = getPlayer(newTurnId, foundRoom.players);
     const nextPlayerName = nextPlayer.name;
+    console.log('PLAYER FOUND BOMB', playerFoundBomb);
     if (playerFoundBomb) {
         emitToRoom(
             rooms,

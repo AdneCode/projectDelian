@@ -1,5 +1,5 @@
 import { BombSlot, Box, Player, Room, Rooms } from '../../globalUtility/types';
-import { findRoomById, generateNewRooms } from '.';
+import { findRoomById, generateNewRooms, emitToRoom, getPlayer } from '.';
 export const startRoom = (rooms: Rooms, roomId: string) => {
     if (rooms.length === 0) return;
     const startedRoom: Room = findRoomById(rooms, roomId);
@@ -25,8 +25,10 @@ export const startRoom = (rooms: Rooms, roomId: string) => {
     const turnTable = startedRoom.players.map((i: Player) => {
         return i.id;
     });
+
     startedRoom.turnTable = turnTable;
     startedRoom.currentTurn = turnTable[0];
+
     const newRooms: Room[] = generateNewRooms(rooms, startedRoom);
     return { newRooms, startedRoom };
 };

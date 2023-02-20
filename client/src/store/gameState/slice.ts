@@ -41,7 +41,7 @@ export const gameSlice = createSlice({
         },
         messageReducer: (state: State, action: { payload: string }) => {
             const message = action.payload;
-            state.messages = [...state.messages, message];
+            state.messages = [message, ...state.messages];
         },
         messageArrayReducer: (state: State, action: { payload: string[] }) => {
             const messageArray = action.payload;

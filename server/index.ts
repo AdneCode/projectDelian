@@ -115,6 +115,18 @@ io.on('connect', (socket: any) => {
                 room: cleanBoxEmit(findRoomById(rooms, roomId)),
             };
             emitToRoom(rooms, startedRoom.id, sendData, io, 'sendRoom');
+            emitToRoom(
+                rooms,
+                startedRoom.id,
+                {
+                    message: `Room has started. It's the turn of ${getPlayer(
+                        startedRoom.currentTurn,
+                        startedRoom.players,
+                    )}`,
+                },
+                io,
+                'receiveMessage',
+            );
         } catch (error) {
             console.log(error);
         }

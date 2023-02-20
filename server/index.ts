@@ -122,7 +122,7 @@ io.on('connect', (socket: any) => {
                     message: `Room has started. It's the turn of ${getPlayer(
                         startedRoom.currentTurn,
                         startedRoom.players,
-                    )}`,
+                    )}. Good luck and have fun!`,
                 },
                 io,
                 'receiveMessage',

@@ -7,7 +7,6 @@ import {
     Room,
 } from '../globalUtility/types';
 
-const corsMiddleWare = require('cors');
 const { Server } = require('socket.io');
 
 //Server setup

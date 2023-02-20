@@ -221,7 +221,7 @@ io.on('connect', (socket: any) => {
     });
 
     socket.on('testing', () => {
-        console.log('test');
+        console.log('Test was activated');
         io.emit(
             'getRoom',
             rooms.map((i: Room) => {

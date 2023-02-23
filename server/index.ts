@@ -163,12 +163,21 @@ io.on('connect', (socket: any) => {
             if (
                 !foundRoom ||
                 !player ||
+                player.isSpectator ||
                 player.bombs - bombCount < 0 ||
                 bombCount <= 0 ||
                 slotId >= foundRoom.livesPerBox ||
                 foundRoom.phase !== 'Preparing'
-            )
+            ) {
+                io.to(socket.id).emit('receiveMessage', {
+                    message: `${
+                        player.isSpectator
+                            ? 'Spectators are not able to place bombs'
+                            : "You can't do that!"
+                    }.`,
+                });
                 return;
+            }
             //Feedback?
             const foundBox = foundRoom.boxes.find((i: Box) => {
                 return i.id === boxId;

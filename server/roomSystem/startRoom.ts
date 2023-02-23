@@ -5,7 +5,10 @@ export const startRoom = (rooms: Rooms, roomId: string) => {
     const startedRoom: Room = findRoomById(rooms, roomId);
     startedRoom.phase = 'Preparing';
     startedRoom.players = startedRoom.players.map((i: Player) => {
-        return { ...i, bombs: startedRoom.bombsPerPlayer };
+        if (!i.isSpectator) {
+            return { ...i, bombs: startedRoom.bombsPerPlayer };
+        }
+        return { ...i, bombs: 0 };
     });
     let boxes = [];
     for (let i = 1; i <= startedRoom.boxCount; i++) {

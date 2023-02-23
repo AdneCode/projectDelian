@@ -44,22 +44,28 @@ export const Settings = (p: GameProp) => {
     if (game.hostId !== socket.id) {
         return (
             <>
-                <h1>Bombs per player {`${game.bombsPerPlayer}`}</h1>
-                <h1>Amount of boxes {`${game.boxCount}`}</h1>
-                <h1>Lives per box {`${game.livesPerBox}`}</h1>
+                <div className="py-4">
+                    <h1>Bombs per player {`${game.bombsPerPlayer}`}</h1>
+                </div>
+                <div className="py-4">
+                    <h1>Amount of boxes {`${game.boxCount}`}</h1>
+                </div>
+                <div className="py-4">
+                    <h1>Lives per box {`${game.livesPerBox}`}</h1>
+                </div>
             </>
         );
     }
     return (
-        <div className="settingsWindow" id="settingsWindowId">
-            <div className="settingsWindowField">
+        <div className="settingsWindow py-4" id="settingsWindowId">
+            <div className="settingsWindowField py-4">
                 <label className="settingsText">
                     Bombs per player ({globalSettings.minBombsPerPlayer}-
                     {globalSettings.maxBombsPerPlayer})
                 </label>
                 <input
                     type="number"
-                    className="text-black"
+                    className="text-black mx-4"
                     id="bombCountInputId"
                     name="age"
                     min={globalSettings.minBombsPerPlayer}
@@ -73,14 +79,14 @@ export const Settings = (p: GameProp) => {
                     value={settings.bombsPerPlayer}
                 />
             </div>
-            <div className="settingsWindowField">
+            <div className="py-4">
                 <label className="settingsText">
                     Amount of boxes ({globalSettings.minBoxCount}-
                     {globalSettings.maxBoxCount})
                 </label>
                 <input
                     type="number"
-                    className="text-black"
+                    className="text-black mx-4"
                     id="boxCountInputId"
                     name="age"
                     min={globalSettings.minBoxCount}
@@ -94,14 +100,14 @@ export const Settings = (p: GameProp) => {
                     value={settings.boxCount}
                 />
             </div>
-            <div className="settingsWindowField">
+            <div className="settingsWindowField py-4">
                 <label className="settingsText">
                     Lives per box({globalSettings.minBoxLives}-
                     {globalSettings.maxBoxLives})
                 </label>
                 <input
                     type="number"
-                    className="text-black"
+                    className="text-black mx-4"
                     id="boxLivesInputId"
                     name="age"
                     min={globalSettings.minBoxLives}
@@ -115,7 +121,10 @@ export const Settings = (p: GameProp) => {
                     value={settings.livesPerBox}
                 />
             </div>
-            <button onClick={() => emitSettings(settings)}>
+            <button
+                onClick={() => emitSettings(settings)}
+                className="border py-4 px-4 border-slate-50 bg-slate-600 hover:bg-slate-500"
+            >
                 Change settings
             </button>
         </div>

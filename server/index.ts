@@ -242,13 +242,17 @@ io.on('connect', (socket: any) => {
     });
 
     socket.on('hitSlot', (data: Data) => {
-        const { boxId, roomId } = data;
-        if (!boxId || !roomId) return;
-        const newRoom = onBoxClick(rooms, roomId, boxId, socket.id, io);
-        if (!newRoom) return;
-        rooms = generateNewRooms(rooms, newRoom);
-        const sendData = { room: cleanBoxEmit(newRoom) };
-        emitToRoom(rooms, newRoom.id, sendData, io, 'sendRoom');
+        try {
+            const { boxId, roomId } = data;
+            if (!boxId || !roomId) return;
+            const newRoom = onBoxClick(rooms, roomId, boxId, socket.id, io);
+            if (!newRoom) return;
+            rooms = generateNewRooms(rooms, newRoom);
+            const sendData = { room: cleanBoxEmit(newRoom) };
+            emitToRoom(rooms, newRoom.id, sendData, io, 'sendRoom');
+        } catch (error) {
+            console.log(error);
+        }
     });
 
     socket.on('disconnect', (reason: string) => {

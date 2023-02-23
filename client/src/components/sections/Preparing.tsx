@@ -6,6 +6,7 @@ import { gameReducer } from '../../store';
 import './scale.css';
 import { BoxList } from '../boxes/BoxList';
 import { useState } from 'react';
+import { Messages } from './Messages';
 
 export function Preparing(p: GameProp) {
     const { game } = p;
@@ -77,6 +78,7 @@ export function Preparing(p: GameProp) {
                     />
                 </div>
                 <BoxList game={game} sendData={sendData} />
+                <Messages />
             </div>
         </div>
     );

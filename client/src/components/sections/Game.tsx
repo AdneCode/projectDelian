@@ -1,5 +1,5 @@
 import { GameProp } from '../../../../globalUtility/types';
-import { Lobby, InGame, Preparing } from '.';
+import { Lobby, InGame, Preparing, Messages } from '.';
 
 export function Game(p: GameProp) {
     const { game } = p;

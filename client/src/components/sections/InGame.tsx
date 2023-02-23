@@ -35,8 +35,8 @@ export function InGame(p: GameProp) {
                 <button onClick={() => socket.emit('testing')}>TEST</button>
 
                 <BoxList game={game} />
-                <Messages game={game} />
             </div>
+            <Messages />
         </div>
     );
 }

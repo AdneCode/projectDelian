@@ -2,6 +2,7 @@ import './App.css';
 import { NoUserSection, Game } from './components';
 import { useSelector } from 'react-redux';
 import { selectState } from './store';
+import { Messages } from './components';
 
 function App() {
     const rawState = useSelector(selectState());

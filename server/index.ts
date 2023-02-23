@@ -115,18 +115,6 @@ io.on('connect', (socket: any) => {
                 room: cleanBoxEmit(findRoomById(rooms, roomId)),
             };
             emitToRoom(rooms, startedRoom.id, sendData, io, 'sendRoom');
-            emitToRoom(
-                rooms,
-                startedRoom.id,
-                {
-                    message: `Room has started. It's the turn of ${getPlayer(
-                        startedRoom.currentTurn,
-                        startedRoom.players,
-                    )}. Good luck and have fun!`,
-                },
-                io,
-                'receiveMessage',
-            );
         } catch (error) {
             console.log(error);
         }
@@ -221,10 +209,26 @@ io.on('connect', (socket: any) => {
             rooms = generateNewRooms(rooms, newRoom);
             const sendData = { bombCount: newBombCount };
             io.to(socket.id).emit('updateBombCount', sendData);
+            io.to(socket.id).emit('receiveMessage', {
+                message: `You placed ${bombCount} ${
+                    bombCount === 1 ? 'bomb' : 'bombs'
+                } in slot ${slotId} of box ${boxId}.`,
+            });
             if (isRoomPrepared(newRoom)) {
                 const preparedRoom = { ...newRoom, phase: 'InGame' };
                 rooms = generateNewRooms(rooms, preparedRoom);
                 emitToRoom(rooms, newRoom.id, null, io, 'endPrepare');
+                emitToRoom(
+                    rooms,
+                    newRoom.id,
+                    {
+                        message: `Room has started. It's the turn of ${
+                            getPlayer(newRoom.currentTurn, newRoom.players).name
+                        }. Good luck and have fun!`,
+                    },
+                    io,
+                    'receiveMessage',
+                );
             }
         } catch (error) {
             console.log(error);

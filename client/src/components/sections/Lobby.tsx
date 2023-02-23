@@ -31,6 +31,7 @@ export function Lobby(p: GameProp) {
             <StartRoomButton hostId={game.hostId} roomId={game.id} />
             <Settings game={game} />
             <Messages />
+            <SpectatorToggle game={game} />
         </div>
     );
 }

@@ -1,7 +1,6 @@
 import { BombSlot } from '../../globalUtility/types';
 
 export const bombSlotHasBombs = (bombSlot: BombSlot) => {
-    console.log('BOMBSLOT', bombSlot);
     if (bombSlot.bombCount > 0) {
         return true;
     }

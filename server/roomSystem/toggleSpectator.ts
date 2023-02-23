@@ -3,10 +3,7 @@ import { getPlayersFromRoom } from './getPlayersFromRoom';
 
 //takes a room and returns a new room with the spectator status changed
 export const toggleSpectator = (room: Room, socketId: string) => {
-    console.log(room);
-    console.log(room.players);
     const players = getPlayersFromRoom(room);
-    console.log(players);
     const newPlayer = players.find((i: Player) => {
         return i.id === socketId;
     });

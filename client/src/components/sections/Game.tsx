@@ -3,7 +3,6 @@ import { Lobby, InGame, Preparing, Messages } from '.';
 
 export function Game(p: GameProp) {
     const { game } = p;
-    console.log(game.phase);
     if (game.phase === 'PreGame') {
         return (
             <div>

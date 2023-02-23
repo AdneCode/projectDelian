@@ -236,7 +236,7 @@ io.on('connect', (socket: any) => {
         io.emit(
             'getRoom',
             rooms.map((i: Room) => {
-                return cleanBoxEmit(i);
+                return i;
             }),
         );
     });

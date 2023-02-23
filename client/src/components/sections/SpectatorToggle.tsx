@@ -10,10 +10,13 @@ export const SpectatorToggle = (p: GameProp) => {
     });
     if (!self) return <></>;
     return (
-        <input
-            type="checkbox"
-            checked={self.isSpectator}
-            onClick={() => socket.emit('toggleSpectator')}
-        />
+        <div className="flex inline-flex">
+            <div className="py-4 px-4">Toggle spectator</div>
+            <input
+                type="checkbox"
+                checked={self.isSpectator}
+                onClick={() => socket.emit('toggleSpectator')}
+            />
+        </div>
     );
 };

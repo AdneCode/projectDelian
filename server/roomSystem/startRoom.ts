@@ -22,9 +22,13 @@ export const startRoom = (rooms: Rooms, roomId: string) => {
     }
     console.log(`Started room ${startedRoom.id}`);
     startedRoom.boxes = boxes;
-    const turnTable = startedRoom.players.map((i: Player) => {
-        return i.id;
-    });
+    const turnTable = startedRoom.players
+        .filter((i: Player) => {
+            return !i.isSpectator;
+        })
+        .map((i: Player) => {
+            return i.id;
+        });
 
     startedRoom.turnTable = turnTable;
     startedRoom.currentTurn = turnTable[0];

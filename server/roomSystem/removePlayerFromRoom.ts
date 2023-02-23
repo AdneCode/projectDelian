@@ -1,7 +1,8 @@
-import { Rooms, Room, Player, Game } from '../../globalUtility/types';
+import { Game, Player, Room, Rooms } from '../../globalUtility/types';
+
+import { getNewHost } from './getNewHost';
 import { roomHasSocketId } from './roomHasSocketId';
 import { socketIdIsHost } from './socketIdIsHost';
-import { getNewHost } from './getNewHost';
 
 export const removePlayerFromRoom = (
     rooms: Rooms,

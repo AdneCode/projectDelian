@@ -1,12 +1,12 @@
-import { Box, Rooms, Room } from '../../globalUtility/types';
+import { Box, Room, Rooms } from '../../globalUtility/types';
 import {
-    findRoomById,
-    findBoxById,
     bombSlotHasBombs,
+    countBombsInSlot,
+    emitToRoom,
+    findBoxById,
+    findRoomById,
     getNewTurn,
     getPlayer,
-    emitToRoom,
-    countBombsInSlot,
 } from '.';
 
 export const onBoxClick = (

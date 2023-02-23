@@ -1,4 +1,4 @@
-import { Rooms, Room, Data } from '../../globalUtility/types';
+import { Data, Room, Rooms } from '../../globalUtility/types';
 const emitToRoom = (
     rooms: Rooms,
     roomId: string,

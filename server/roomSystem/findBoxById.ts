@@ -1,4 +1,4 @@
-import { Room, Box } from '../../globalUtility/types';
+import { Box, Room } from '../../globalUtility/types';
 
 export const findBoxById = (room: Room, boxId: number) => {
     const foundBox = room.boxes.find((i: Box) => {

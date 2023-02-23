@@ -1,11 +1,31 @@
 import {
-    Rooms,
-    Data,
-    Box,
     BombSlot,
+    Box,
+    Data,
     Player,
     Room,
+    Rooms,
 } from '../globalUtility/types';
+//Functions
+import {
+    cleanBoxEmit,
+    createRoom,
+    emitToRoom,
+    findRoomById,
+    findRoomBySocketId,
+    generateNewRooms,
+    getPlayer,
+    getPlayersFromRoom,
+    getSpectatorsFromRoom,
+    isRoomPrepared,
+    joinRoom,
+    onBoxClick,
+    removePlayerFromRoom,
+    setSettings,
+    socketIdIsHost,
+    startRoom,
+    toggleSpectator,
+} from './roomSystem';
 
 const { Server } = require('socket.io');
 
@@ -19,26 +39,6 @@ const server = http.createServer(app);
 
 const PORT = 4000;
 
-//Functions
-import {
-    createRoom,
-    emitToRoom,
-    findRoomById,
-    findRoomBySocketId,
-    joinRoom,
-    startRoom,
-    socketIdIsHost,
-    generateNewRooms,
-    removePlayerFromRoom,
-    toggleSpectator,
-    setSettings,
-    getPlayer,
-    getPlayersFromRoom,
-    isRoomPrepared,
-    cleanBoxEmit,
-    onBoxClick,
-    getSpectatorsFromRoom,
-} from './roomSystem';
 
 //Socket setup
 const io = new Server(server);

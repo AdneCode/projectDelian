@@ -29,7 +29,8 @@ const Boxes = (p: {
         };
         socket.emit('fillSlot', data);
     };
-    const hitSlot = (boxId: number) => {
+    const hitSlot = (boxId: number, lives: number) => {
+        if (lives === 0) return;
         const data = {
             roomId: game.id,
             boxId: boxId,
@@ -39,7 +40,6 @@ const Boxes = (p: {
     const { game, sendData } = p;
 
     if (!game.boxes) return <></>;
-
     if (game.phase === 'Preparing') {
         const boxes = game.boxes.map((i: BoxType) => {
             if (!sendData) return <></>;
@@ -59,7 +59,7 @@ const Boxes = (p: {
     if (game.phase === 'InGame') {
         const boxes = game.boxes.map((i: BoxType) => {
             return (
-                <div key={i.id + 2} onClick={() => hitSlot(i.id)}>
+                <div key={i.id + 2} onClick={() => hitSlot(i.id, i.lives)}>
                     <Box key={i.id} id={i.id} lives={i.lives} />
                 </div>
             );

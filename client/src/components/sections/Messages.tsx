@@ -46,9 +46,6 @@ export const Messages = (p: GameProp) => {
         console.log(offset);
         window.removeEventListener('wheel', onScroll);
         window.addEventListener('wheel', onScroll, { passive: true });
-        return () => {
-            window.removeEventListener('wheel', onScroll);
-        };
     }, [offset]);
 
     return (

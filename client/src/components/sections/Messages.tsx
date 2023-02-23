@@ -42,7 +42,6 @@ export const Messages = () => {
                 setOffset(offset - 1);
             }
         };
-        console.log(offset);
         window.removeEventListener('wheel', onScroll);
         window.addEventListener('wheel', onScroll, { passive: true });
         return () => {

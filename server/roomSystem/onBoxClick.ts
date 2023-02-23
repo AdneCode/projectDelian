@@ -31,7 +31,6 @@ export const onBoxClick = (
     const currentPlayer = getPlayer(playerId, foundRoom.players);
     const currentPlayerName = currentPlayer.name;
     const nextPlayer = getPlayer(newTurnId, foundRoom.players);
-
     const nextPlayerName = nextPlayer.name;
     if (playerFoundBomb) {
         emitToRoom(
@@ -57,7 +56,6 @@ export const onBoxClick = (
             'receiveMessage',
         );
     }
-    //HIER
     const newBox = { ...foundBox, lives: foundBox.lives - 1 };
     const newBoxes = foundRoom.boxes.map((i: Box) => {
         if (i.id === boxId) return newBox;

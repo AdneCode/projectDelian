@@ -18,3 +18,4 @@ export * from './isRoomPrepared';
 export * from './cleanBoxEmit';
 export * from './onBoxClick';
 export * from './bombSlotHasBombs';
+export * from './getSpectatorsFromRoom';

@@ -37,6 +37,7 @@ import {
     isRoomPrepared,
     cleanBoxEmit,
     onBoxClick,
+    getSpectatorsFromRoom,
 } from './roomSystem';
 
 //Socket setup
@@ -238,6 +239,12 @@ io.on('connect', (socket: any) => {
                     io,
                     'receiveMessage',
                 );
+                const spectatorArray = getSpectatorsFromRoom(newRoom);
+                spectatorArray.map((i: string) => {
+                    io.to(i).emit('receiveMessage', {
+                        message: 'You are watching as a spectator',
+                    });
+                });
             }
         } catch (error) {
             console.log(error);

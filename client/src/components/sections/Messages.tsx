@@ -1,6 +1,5 @@
-import { GameProp } from '../../../../globalUtility/types';
 import { useEffect, useContext, useState } from 'react';
-import { messageReducer, messageArrayReducer } from '../../store';
+import { messageReducer } from '../../store';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { SocketContext } from '../../socket/socket';
 import { Data } from '../../../../globalUtility/types';
@@ -23,11 +22,6 @@ export const Messages = () => {
             socket.off('receiveMessage');
         };
     }, []);
-
-    // useEffect(() => {
-    //     if (!game.messages || game.messages.length === 0) return;
-    //     dispatch(messageArrayReducer(game.messages));
-    // }, [game]);
 
     useEffect(() => {
         const onScroll = (e: any) => {

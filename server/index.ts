@@ -39,7 +39,6 @@ const server = http.createServer(app);
 
 const PORT = 4000;
 
-
 //Socket setup
 const io = new Server(server);
 let rooms: Rooms = [];

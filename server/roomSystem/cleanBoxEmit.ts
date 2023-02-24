@@ -1,7 +1,7 @@
 import { Box, Room } from '../../globalUtility/types';
 
 //cleans all boxes in a room from their bombslots, used when emitting roomData to client
-export const cleanBoxEmit = (room: Room) => {
+export const cleanBoxEmit = (room: Room): Room => {
     if (!room.boxes) {
         return room;
     }

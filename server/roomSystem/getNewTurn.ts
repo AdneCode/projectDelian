@@ -1,6 +1,6 @@
 import { Room } from '../../globalUtility/types';
 
-export const getNewTurn = (room: Room) => {
+export const getNewTurn = (room: Room): string => {
     const { currentTurn, turnTable } = room;
     const currentIndex = turnTable.findIndex((i: string) => currentTurn === i);
 

@@ -1,5 +1,5 @@
 import { BombSlot, Box, Player, Room, Rooms } from '../../globalUtility/types';
-import { emitToRoom, findRoomById, generateNewRooms, getPlayer } from '.';
+import { findRoomById, generateNewRooms } from '.';
 export const startRoom = (rooms: Rooms, roomId: string) => {
     if (rooms.length === 0) return;
     const startedRoom: Room = findRoomById(rooms, roomId);

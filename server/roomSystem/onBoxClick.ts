@@ -8,6 +8,7 @@ import {
     getNewTurn,
     getPlayer,
 } from '.';
+import { roomHasNoBombs } from './roomHasNoBombs';
 
 export const onBoxClick = (
     rooms: Rooms,
@@ -61,5 +62,14 @@ export const onBoxClick = (
         if (i.id === boxId) return newBox;
         return i;
     });
-    return { ...foundRoom, boxes: newBoxes, currentTurn: newTurnId };
+    const newestRoom = {
+        ...foundRoom,
+        boxes: newBoxes,
+        currentTurn: newTurnId,
+    };
+    if (roomHasNoBombs(newestRoom)) {
+        console.log(`Room has ended ${newestRoom.id}`);
+        return { ...foundRoom, phase: 'result' };
+    }
+    return newestRoom;
 };

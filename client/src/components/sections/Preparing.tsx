@@ -50,7 +50,7 @@ export function Preparing(p: GameProp) {
     return (
         <div className="scale">
             <div className="w-1/2">
-                <button onClick={() => socket.emit('testing')}>TEST</button>
+                <button onClick={() => socket.emit('testing')}>!TEST!</button>
                 <div>
                     <label>Amount of bombs ({bombCount} remaining)</label>
                     <input

@@ -4,7 +4,6 @@ import { SocketContext, socket } from './socket/socket';
 
 import App from './App';
 import { Provider } from 'react-redux';
-import React from 'react';
 import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import store from './store';
